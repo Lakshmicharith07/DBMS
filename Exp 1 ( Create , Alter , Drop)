@@ -1,0 +1,71 @@
+mysql> create database charith;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use charith;
+Database changed
+mysql> create table Simats(reg int(20),name varchar(20),dept varchar(10),salary int(20));
+Query OK, 0 rows affected, 2 warnings (0.02 sec)
+
+mysql> desc simats;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| reg    | int         | YES  |     | NULL    |       |
+| name   | varchar(20) | YES  |     | NULL    |       |
+| dept   | varchar(10) | YES  |     | NULL    |       |
+| salary | int         | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_charith |
++-------------------+
+| simats            |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> insert into simats values(1,"abhijith","CSE",10000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into simats values(2,"charith","ECE",20000);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into simats values(3,"prajwal","EEE",12000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into simats values(4,"akhil","mech",15000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into simats values(5,"ravi","civil",17000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from simats;
++------+----------+-------+--------+
+| reg  | name     | dept  | salary |
++------+----------+-------+--------+
+|    1 | abhijith | CSE   |  10000 |
+|    2 | charith  | ECE   |  20000 |
+|    3 | prajwal  | EEE   |  12000 |
+|    4 | akhil    | mech  |  15000 |
+|    5 | ravi     | civil |  17000 |
++------+----------+-------+--------+
+5 rows in set (0.00 sec)
+
+mysql> alter table simats add age int(2);
+Query OK, 0 rows affected, 1 warning (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> desc simats;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| reg    | int         | YES  |     | NULL    |       |
+| name   | varchar(20) | YES  |     | NULL    |       |
+| dept   | varchar(10) | YES  |     | NULL    |       |
+| salary | int         | YES  |     | NULL    |       |
+| age    | int         | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+mysql> drop table simats;
+Query OK, 0 rows affected (0.02 sec)

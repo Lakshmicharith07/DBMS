@@ -1,0 +1,106 @@
+mysql> select*from saveetha;
++-----------+---------+------------+--------+
+| Rollno    | Name    | Experience | Amount |
++-----------+---------+------------+--------+
+| 192111138 | CHARITH |          3 |  45000 |
+| 192111452 | AKHIL   |          1 |  15000 |
+| 192111455 | prajwal |          2 |  25000 |
+| 192111454 | AJAY    |          1 |  20000 |
+| 192111453 | GG      |          1 |  10000 |
++-----------+---------+------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> start transaction;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql>
+mysql> savepoint ini;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into saveetha values(192111136,"RAVI",1,12000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from saveetha;
++-----------+---------+------------+--------+
+| Rollno    | Name    | Experience | Amount |
++-----------+---------+------------+--------+
+| 192111138 | CHARITH |          3 |  45000 |
+| 192111452 | AKHIL   |          1 |  15000 |
+| 192111455 | prajwal |          2 |  25000 |
+| 192111454 | AJAY    |          1 |  20000 |
+| 192111453 | GG      |          1 |  10000 |
+| 192111136 | RAVI    |          1 |  12000 |
++-----------+---------+------------+--------+
+6 rows in set (0.00 sec)
+
+mysql> savepoint ins;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> update saveetha set Amount=55000 where Name='charith';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from saveetha;
++-----------+---------+------------+--------+
+| Rollno    | Name    | Experience | Amount |
++-----------+---------+------------+--------+
+| 192111138 | CHARITH |          3 |  55000 |
+| 192111452 | AKHIL   |          1 |  15000 |
+| 192111455 | prajwal |          2 |  25000 |
+| 192111454 | AJAY    |          1 |  20000 |
+| 192111453 | GG      |          1 |  10000 |
+| 192111136 | RAVI    |          1 |  12000 |
++-----------+---------+------------+--------+
+6 rows in set (0.00 sec)
+
+mysql> savepoint upd;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> delete from saveetha where name='RAVI';
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select*from saveetha;
++-----------+---------+------------+--------+
+| Rollno    | Name    | Experience | Amount |
++-----------+---------+------------+--------+
+| 192111138 | CHARITH |          3 |  55000 |
+| 192111452 | AKHIL   |          1 |  15000 |
+| 192111455 | prajwal |          2 |  25000 |
+| 192111454 | AJAY    |          1 |  20000 |
+| 192111453 | GG      |          1 |  10000 |
++-----------+---------+------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> savepoint del;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> rollback to upd;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select*from saveetha;
++-----------+---------+------------+--------+
+| Rollno    | Name    | Experience | Amount |
++-----------+---------+------------+--------+
+| 192111138 | CHARITH |          3 |  55000 |
+| 192111452 | AKHIL   |          1 |  15000 |
+| 192111455 | prajwal |          2 |  25000 |
+| 192111454 | AJAY    |          1 |  20000 |
+| 192111453 | GG      |          1 |  10000 |
+| 192111136 | RAVI    |          1 |  12000 |
++-----------+---------+------------+--------+
+6 rows in set (0.00 sec)
+
+mysql> rollback to ini;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select*from saveetha;
++-----------+---------+------------+--------+
+| Rollno    | Name    | Experience | Amount |
++-----------+---------+------------+--------+
+| 192111138 | CHARITH |          3 |  45000 |
+| 192111452 | AKHIL   |          1 |  15000 |
+| 192111455 | prajwal |          2 |  25000 |
+| 192111454 | AJAY    |          1 |  20000 |
+| 192111453 | GG      |          1 |  10000 |
++-----------+---------+------------+--------+
+5 rows in set (0.00 sec)

@@ -1,0 +1,197 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 26
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use akhil;
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_akhil |
++-----------------+
+| authors         |
+| bookcompany     |
+| employee        |
+| faculty         |
+| food            |
+| marks           |
+| stddept         |
+| student         |
++-----------------+
+8 rows in set (0.00 sec)
+
+mysql> create table car(carname varchar(20),carmodel varchar(10),carcost int(10),carcolour varchar(20));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> select*from car;
+Empty set (0.00 sec)
+
+mysql> desc car;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| carname   | varchar(20) | YES  |     | NULL    |       |
+| carmodel  | varchar(10) | YES  |     | NULL    |       |
+| carcost   | int(10)     | YES  |     | NULL    |       |
+| carcolour | varchar(20) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+4 rows in set (0.03 sec)
+
+mysql> drop table car;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_akhil |
++-----------------+
+| authors         |
+| bookcompany     |
+| employee        |
+| faculty         |
+| food            |
+| marks           |
+| stddept         |
+| student         |
++-----------------+
+8 rows in set (0.00 sec)
+
+mysql> create table car(carmodel varchar(10),carcolour varchar(20),carcost int(10),carmileage int(10));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc car;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| carmodel   | varchar(10) | YES  |     | NULL    |       |
+| carcolour  | varchar(20) | YES  |     | NULL    |       |
+| carcost    | int(10)     | YES  |     | NULL    |       |
+| carmileage | int(10)     | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+
+mysql> insert into car values("buggati","white",794500000,19);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into car values("thar","black",500000,20);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into car values("audi","red",7000000,30);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into car values("bmw","maroonred",4500000,17);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from car;
++----------+-----------+-----------+------------+
+| carmodel | carcolour | carcost   | carmileage |
++----------+-----------+-----------+------------+
+| buggati  | white     | 794500000 |         19 |
+| thar     | black     |    500000 |         20 |
+| audi     | red       |   7000000 |         30 |
+| bmw      | maroonred |   4500000 |         17 |
++----------+-----------+-----------+------------+
+4 rows in set (0.00 sec)
+
+mysql> update car set carmodel="benile" where carmileage=20;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from car;
++----------+-----------+-----------+------------+
+| carmodel | carcolour | carcost   | carmileage |
++----------+-----------+-----------+------------+
+| buggati  | white     | 794500000 |         19 |
+| benile   | black     |    500000 |         20 |
+| audi     | red       |   7000000 |         30 |
+| bmw      | maroonred |   4500000 |         17 |
++----------+-----------+-----------+------------+
+4 rows in set (0.00 sec)
+
+mysql> create table caronwer(ownername varchar(20),ownerage int(10),idproof int(10));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into carowner values("akhil",19,123);
+ERROR 1146 (42S02): Table 'akhil.carowner' doesn't exist
+mysql> insert into caronwer values("akhil",19,123);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into caronwer values("prajwal",22,222);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into caronwer values("ravi",23,2222);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into caronwer values("charith",45,2345);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select*from caronwer;
++-----------+----------+---------+
+| ownername | ownerage | idproof |
++-----------+----------+---------+
+| akhil     |       19 |     123 |
+| prajwal   |       22 |     222 |
+| ravi      |       23 |    2222 |
+| charith   |       45 |    2345 |
++-----------+----------+---------+
+4 rows in set (0.00 sec)
+
+mysql> alter caronwer add regno int(2);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'caronwer add regno int(2)' at line 1
+mysql> alter  table caronwer add regno int(2);
+Query OK, 4 rows affected (0.02 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> update caronwer set regno=1 where ownername="akhil";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update caronwer set regno=2 where ownername="charith";
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update caronwer set regno=3 where ownername="prajwal";
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update caronwer set regno=4 where ownername="ravi";
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from caronwer;
++-----------+----------+---------+-------+
+| ownername | ownerage | idproof | regno |
++-----------+----------+---------+-------+
+| akhil     |       19 |     123 |     1 |
+| prajwal   |       22 |     222 |     3 |
+| ravi      |       23 |    2222 |     4 |
+| charith   |       45 |    2345 |     2 |
++-----------+----------+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select ownername from caronwer where idproof=222;
++-----------+
+| ownername |
++-----------+
+| prajwal   |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select regno from caronwer where ownername=akhil;
+ERROR 1054 (42S22): Unknown column 'akhil' in 'where clause'
+mysql> select regno from caronwer where ownername="akhil";
++-------+
+| regno |
++-------+
+|     1 |
++-------+
+1 row in set (0.00 sec)
+
+mysql>
